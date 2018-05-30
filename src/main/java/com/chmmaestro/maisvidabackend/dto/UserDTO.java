@@ -10,6 +10,7 @@ public class UserDTO implements Serializable{
 	private String id;
 	private String name;
 	private String email;
+	private Boolean ativo;
 
 	public UserDTO() {
 
@@ -19,6 +20,7 @@ public class UserDTO implements Serializable{
 		id = obj.getId();
 		name = obj.getName();
 		email = obj.getEmail();
+		ativo = obj.getAtivo();
 	}
 
 	public String getId() {
@@ -44,4 +46,14 @@ public class UserDTO implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
+	
+	
 }

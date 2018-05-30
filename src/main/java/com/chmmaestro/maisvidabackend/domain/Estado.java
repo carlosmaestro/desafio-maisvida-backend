@@ -6,28 +6,23 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class User implements Serializable {
+public class Estado implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
 	@Id
-	private String id;
-	private String name;
-	private String email;
-	private String senha;
-	private Boolean ativo;
+	String id;
+	String name;
+	String uf;
 
-	public User() {
+	public Estado() {
 
 	}
 
-	public User(String id, String name, String email, String senha, Boolean ativo) {
+	public Estado(String id, String name, String uf) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.email = email;
-		this.senha = senha;
-		this.ativo = ativo;
+		this.uf = uf;
 	}
 
 	public String getId() {
@@ -46,28 +41,12 @@ public class User implements Serializable {
 		this.name = name;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getUf() {
+		return uf;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public Boolean getAtivo() {
-		return ativo;
-	}
-
-	public void setAtivo(Boolean ativo) {
-		this.ativo = ativo;
+	public void setUf(String uf) {
+		this.uf = uf;
 	}
 
 	@Override
@@ -86,7 +65,7 @@ public class User implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		Estado other = (Estado) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

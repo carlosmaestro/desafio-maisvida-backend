@@ -3,31 +3,29 @@ package com.chmmaestro.maisvidabackend.domain;
 import java.io.Serializable;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class User implements Serializable {
-
+public class Cidade implements Serializable{
+	
 	private static final long serialVersionUID = 1L;
-
 	@Id
-	private String id;
-	private String name;
-	private String email;
-	private String senha;
-	private Boolean ativo;
-
-	public User() {
-
+	String id;
+	String name;
+	
+	@DBRef
+	Estado estado;
+	
+	public Cidade() {
+		
 	}
 
-	public User(String id, String name, String email, String senha, Boolean ativo) {
+	public Cidade(String id, String name, Estado estado) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.email = email;
-		this.senha = senha;
-		this.ativo = ativo;
+		this.estado = estado;
 	}
 
 	public String getId() {
@@ -45,29 +43,15 @@ public class User implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	
 
-	public String getEmail() {
-		return email;
+	public Estado getEstado() {
+		return estado;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public Boolean getAtivo() {
-		return ativo;
-	}
-
-	public void setAtivo(Boolean ativo) {
-		this.ativo = ativo;
+	public void setEstado(Estado estado) {
+		this.estado = estado;
 	}
 
 	@Override
@@ -86,7 +70,7 @@ public class User implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		Cidade other = (Cidade) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

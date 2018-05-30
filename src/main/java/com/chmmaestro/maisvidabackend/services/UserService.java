@@ -45,10 +45,12 @@ public class UserService {
 
 		newObj.setName(obj.getName());
 		newObj.setEmail(obj.getEmail());
+		newObj.setAtivo(obj.getAtivo());
+		newObj.setSenha(obj.getSenha());
 	}
 
 	public User fromDTO(UserDTO objDTO) {
-		return new User(objDTO.getId(), objDTO.getName(), objDTO.getEmail());
+		return new User(objDTO.getId(), objDTO.getName(), objDTO.getEmail(), null ,objDTO.getAtivo());
 	}
 
 }
