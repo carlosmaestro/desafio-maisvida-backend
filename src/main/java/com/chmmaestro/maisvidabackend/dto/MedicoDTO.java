@@ -1,11 +1,5 @@
 package com.chmmaestro.maisvidabackend.dto;
 
-import org.springframework.data.mongodb.core.mapping.DBRef;
-
-import com.chmmaestro.maisvidabackend.domain.Cidade;
-import com.chmmaestro.maisvidabackend.domain.Especialidade;
-import com.chmmaestro.maisvidabackend.domain.Status;
-
 public class MedicoDTO {
 
 	String id;

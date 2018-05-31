@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.chmmaestro.maisvidabackend.domain.Cidade;
 import com.chmmaestro.maisvidabackend.domain.Especialidade;
@@ -12,6 +13,7 @@ import com.chmmaestro.maisvidabackend.domain.Estado;
 import com.chmmaestro.maisvidabackend.domain.Medico;
 import com.chmmaestro.maisvidabackend.domain.Status;
 import com.chmmaestro.maisvidabackend.domain.User;
+import com.chmmaestro.maisvidabackend.domain.enums.Perfil;
 import com.chmmaestro.maisvidabackend.repository.CidadeRepository;
 import com.chmmaestro.maisvidabackend.repository.EspecialidadeRepository;
 import com.chmmaestro.maisvidabackend.repository.EstadoRepository;
@@ -21,6 +23,8 @@ import com.chmmaestro.maisvidabackend.repository.UserRepository;
 
 @Configuration
 public class Instantiation implements CommandLineRunner {
+	
+	@Autowired BCryptPasswordEncoder bcrypt;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -50,9 +54,10 @@ public class Instantiation implements CommandLineRunner {
 		especialidadeRepository.deleteAll();
 		medicoRepository.deleteAll();
 
-		User maria = new User(null, "Maria Brown", "maria@gmail.com", "123", true);
-		User alex = new User(null, "Alex Green", "alex@gmail.com", "123", true);
-		User bob = new User(null, "Bob Grey", "bob@gmail.com", "123", true);
+		User maria = new User(null, "Maria Brown", "maria@gmail.com", bcrypt.encode("123456"), true);
+		maria.addPerfil(Perfil.ADMIN);
+		User alex = new User(null, "Alex Green", "alex@gmail.com", bcrypt.encode("654321"), true);
+		User bob = new User(null, "Bob Grey", "bob@gmail.com", bcrypt.encode("0246810"), true);
 		userRepository.saveAll(Arrays.asList(maria, alex, bob));
 
 		Status st1 = new Status(null, "Ocupado");

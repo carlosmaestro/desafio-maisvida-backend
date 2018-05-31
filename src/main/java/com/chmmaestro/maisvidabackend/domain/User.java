@@ -1,9 +1,14 @@
 package com.chmmaestro.maisvidabackend.domain;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.chmmaestro.maisvidabackend.domain.enums.Perfil;
 
 @Document
 public class User implements Serializable {
@@ -16,9 +21,10 @@ public class User implements Serializable {
 	private String email;
 	private String senha;
 	private Boolean ativo;
+	private Set<Integer> perfis = new HashSet<>();
 
 	public User() {
-
+		addPerfil(Perfil.CLIENTE);
 	}
 
 	public User(String id, String name, String email, String senha, Boolean ativo) {
@@ -28,6 +34,7 @@ public class User implements Serializable {
 		this.email = email;
 		this.senha = senha;
 		this.ativo = ativo;
+		addPerfil(Perfil.CLIENTE);
 	}
 
 	public String getId() {
@@ -68,6 +75,14 @@ public class User implements Serializable {
 
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
+	}
+
+	public Set<Perfil> getPerfis() {
+		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+	}
+
+	public void addPerfil(Perfil perfil) {
+		perfis.add(perfil.getCod());
 	}
 
 	@Override

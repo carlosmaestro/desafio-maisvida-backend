@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.chmmaestro.maisvidabackend.domain.User;
@@ -13,6 +14,8 @@ import com.chmmaestro.maisvidabackend.repository.UserRepository;
 
 @Service
 public class UserService {
+	
+	@Autowired BCryptPasswordEncoder bcrypt;
 
 	@Autowired
 	private UserRepository repo;
@@ -27,6 +30,7 @@ public class UserService {
 	}
 
 	public User insert(User obj) {
+		obj.setSenha(bcrypt.encode(obj.getSenha()));
 		return repo.insert(obj);
 	}
 
@@ -46,7 +50,7 @@ public class UserService {
 		newObj.setName(obj.getName());
 		newObj.setEmail(obj.getEmail());
 		newObj.setAtivo(obj.getAtivo());
-		newObj.setSenha(obj.getSenha());
+		newObj.setSenha(bcrypt.encode(obj.getSenha()));
 	}
 
 	public User fromDTO(UserDTO objDTO) {

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.chmmaestro.maisvidabackend.domain.Cidade;
 import com.chmmaestro.maisvidabackend.domain.Especialidade;
-import com.chmmaestro.maisvidabackend.domain.Estado;
 import com.chmmaestro.maisvidabackend.domain.Medico;
 import com.chmmaestro.maisvidabackend.domain.Status;
 import com.chmmaestro.maisvidabackend.dto.MedicoDTO;
