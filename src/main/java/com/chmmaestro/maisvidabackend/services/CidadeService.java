@@ -24,6 +24,10 @@ public class CidadeService {
 	public List<Cidade> findAll() {
 		return repo.findAll();
 	}
+	
+	public List<Cidade> findAll(String estadoId) {
+		return repo.cidadeByEstadoId(estadoId);
+	}
 
 	public Cidade findById(String id) {
 		Optional<Cidade> obj = repo.findById(id);
